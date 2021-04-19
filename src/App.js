@@ -1,12 +1,17 @@
 import './App.css';
 import Homepage from './pages/homepage/homepage';
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
 
 
-function App() {
+const App=()=> {
   return (
     <div className="App">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Homepage} />
 
-      <Homepage />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
