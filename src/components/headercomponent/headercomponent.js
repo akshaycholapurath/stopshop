@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './headercomponent.styles.scss';
 import {Link} from 'react-router-dom';
+import { auth } from '../../firebase/firebase.util';
 
-class Header extends Component {
+const Header =({currentUser})=> {
 
-    render(){
         return(
             <div className="header">
                 <Link className="logo-container" to='/'>
@@ -15,13 +15,20 @@ class Header extends Component {
                     </Link>
                     <Link className="option" to='/shop'>CONTACT
                     </Link>
-                    <Link className="option" to='/signin'>SIGN IN
-                    </Link>
+                    
+                    {
+                        currentUser?
+                        <div className="option" onClick={()=>auth.signOut()}>Sign Out</div>
+                        :
+                        <Link className="option" to='/signin'>SIGN IN
+                        </Link>
+
+                    }
                     
                 </div>
             </div>
         )
-    }
+    
 }
 
 export default Header;
