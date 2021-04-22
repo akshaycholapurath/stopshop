@@ -18,6 +18,12 @@
     align-items: center;
     justify-content: flex-end;
   }
+  .signout {
+    display: flex;
+    height: 60%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .option {
     padding: 10px 15px;
     cursor: pointer;
