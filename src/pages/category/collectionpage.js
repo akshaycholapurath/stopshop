@@ -10,7 +10,7 @@ const mapStateToProps = (state,ownProps)=> ({
     collection: selectCollection(ownProps.match.params.collectionId)(state)
 })
 
-const CollectionsPage = ({collection}) =>{
+const CollectionPage = ({collection}) =>{
     const {title,items} = collection;
     return(
         <div className='collection-page'>
@@ -26,4 +26,4 @@ const CollectionsPage = ({collection}) =>{
     );
 };
  
-export default connect(mapStateToProps,null)(CollectionsPage);
+export default connect(mapStateToProps,null)(CollectionPage);
