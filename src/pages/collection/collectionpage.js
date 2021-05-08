@@ -2,19 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CollectionItem from '../../components/collection-item/collectionitem';
 import { selectCollection } from '../../redux/shop/shop.selector';
-
 import './collectionpage.styles.scss';
-
 
 const mapStateToProps = (state,ownProps)=> ({
     collection: selectCollection(ownProps.match.params.collectionId)(state)
 })
 
-const CollectionPage = ({collection}) =>{
-    const {title,items} = collection;
+const CollectionPage = ({match,collection})=>{
+
+    const {title,items} = collection
     return(
         <div className='collection-page'>
-            <h1>Test Collections</h1>
             <h2 className='title'>{title}</h2>
             <div className='items'>
             {
@@ -25,5 +23,5 @@ const CollectionPage = ({collection}) =>{
         </div>
     );
 };
- 
-export default connect(mapStateToProps,null)(CollectionPage);
+
+export default connect(mapStateToProps)(CollectionPage);
