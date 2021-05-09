@@ -2,16 +2,38 @@ import React from 'react';
 import './shoppage.styles.scss';
 import CollectionsOverview from '../../components/collections-overview/collections.overview';
 import { Route} from 'react-router-dom';
-import CollectionPage from '../collection/collectionpage';
+import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { connect } from 'react-redux';
+import { selectIsCollectionFetch } from '../../redux/shop/shop.selector';
+import WithSpinner from '../../components/spinner/withspinner';
 
-const Shoppage =({match})=> {
-        
+const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview);
+
+
+const mapStateToProps = state => ({
+    isFetching : selectIsCollectionFetch(state)
+})
+
+const mapDispatchToProps = dispatch =>({
+    updateCollections: () =>dispatch(fetchCollectionsStartAsync())
+})
+
+
+class Shoppage extends React.Component {
+
+    componentDidMount(){
+        this.props.updateCollections()    
+    }
+
+     render(){  
+         const {isFetching} = this.props;  
         return(
             <div className='shoppage'>    
-                <Route exact path='/shop' component={CollectionsOverview}  />
+                <Route exact path='/shop' render={(props)=><CollectionOverviewWithSpinner isLoading={isFetching} {...props} />}  />
             </div>
-        ) 
+        )
+     } 
 }
 
 
-export default Shoppage;
+export default connect(mapStateToProps,mapDispatchToProps)(Shoppage);
