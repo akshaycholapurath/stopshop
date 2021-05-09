@@ -11,7 +11,6 @@ import {setCurrentUser} from './redux/user/user.actions'
 import { selectCurrentUser } from './redux/user/user.selectors';
 import Checkoutpage from './pages/checkout/checkoutpage';
 import CategoryPage from './pages/collection/categorypage';
-import { fetchCollectionsStartAsync } from './redux/shop/shop.actions';
 
 const mapStateToProps=state=>({
   currentUser: selectCurrentUser(state),
@@ -19,7 +18,6 @@ const mapStateToProps=state=>({
 
 const mapDispatchToProps=dispatch=>({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  updateCollections: ()=> dispatch(fetchCollectionsStartAsync())
 })
 
 
@@ -28,8 +26,7 @@ class App extends Component{
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    const {setCurrentUser,updateCollections} = this.props;
-    updateCollections();
+    const {setCurrentUser} = this.props;
     
     this.unsubscribeFromAuth=auth.onAuthStateChanged(async userAuth=>{
       if(userAuth){

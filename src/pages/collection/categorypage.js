@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
-import { selectIsCollectionFetch } from '../../redux/shop/shop.selector';
+import { selectIsCollectionFetch, selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 import CollectionPage from './collectionpage';
 import WithSpinner from '../../components/spinner/withspinner';
 
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 const mapStateToProps = state=>({
-    isFetching: selectIsCollectionFetch(state)
+    isCollectionLoaded: selectIsCollectionLoaded(state)
 })
 
 const mapDispatchToProps = dispatch =>({
@@ -24,9 +24,9 @@ class CategoryPage extends React.Component{
     }
 
     render(){
-        const {match,isFetching} = this.props;
+        const {match,isCollectionLoaded} = this.props;
         return(
-            <Route path={`${match.path}`} render={(props)=><CollectionPageWithSpinner isLoading={isFetching} {...props} />} />
+            <Route path={`${match.path}`} render={(props)=><CollectionPageWithSpinner isLoading={!isCollectionLoaded} {...props} />} />
         )
     }
 }
