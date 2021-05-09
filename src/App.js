@@ -10,14 +10,16 @@ import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/user.actions'
 import { selectCurrentUser } from './redux/user/user.selectors';
 import Checkoutpage from './pages/checkout/checkoutpage';
-import CollectionPage from './pages/collection/collectionpage';
+import CategoryPage from './pages/collection/categorypage';
+import { fetchCollectionsStartAsync } from './redux/shop/shop.actions';
 
 const mapStateToProps=state=>({
   currentUser: selectCurrentUser(state),
 })
 
 const mapDispatchToProps=dispatch=>({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  updateCollections: ()=> dispatch(fetchCollectionsStartAsync())
 })
 
 
@@ -26,7 +28,9 @@ class App extends Component{
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    const {setCurrentUser} = this.props;
+    const {setCurrentUser,updateCollections} = this.props;
+    updateCollections();
+    
     this.unsubscribeFromAuth=auth.onAuthStateChanged(async userAuth=>{
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);
@@ -56,7 +60,7 @@ class App extends Component{
           <Route exact path='/shop' component={Shoppage} />
           <Route exact path='/signin' render={()=>this.props.currentUser?(<Redirect to='/'/>) :(<Signinpage />)} />
           <Route exact path='/checkout' component={Checkoutpage} />
-          <Route path='/:collectionId' component={CollectionPage} />
+          <Route path='/:collectionId' component={CategoryPage} />
         </Switch>
       </BrowserRouter>
     </div>
