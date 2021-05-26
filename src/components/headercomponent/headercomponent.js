@@ -19,12 +19,12 @@ const Header =({currentUser,hidden})=> {
         return(
             <div className="header">
                 <Link className="logo-container" to='/'>
-                    LOGO
+                    STOPSHOP
                 </Link>
                 <div className="options">
                     <Link className="option" to='/shop'>SHOP
                     </Link>
-                    <Link className="option" to='/shop'>CONTACT
+                    <Link className="option" to='/contact'>CONTACT
                     </Link>
                     
                     {

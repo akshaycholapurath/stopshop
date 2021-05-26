@@ -11,6 +11,7 @@ import {setCurrentUser} from './redux/user/user.actions'
 import { selectCurrentUser } from './redux/user/user.selectors';
 import Checkoutpage from './pages/checkout/checkoutpage';
 import CategoryPage from './pages/collection/categorypage';
+import Contactpage from './pages/contactpage/contactpage';
 
 const mapStateToProps=state=>({
   currentUser: selectCurrentUser(state),
@@ -55,6 +56,7 @@ class App extends Component{
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route exact path='/shop' component={Shoppage} />
+          <Route exact path='/contact' component={Contactpage} />
           <Route exact path='/signin' render={()=>this.props.currentUser?(<Redirect to='/'/>) :(<Signinpage />)} />
           <Route exact path='/checkout' component={Checkoutpage} />
           <Route path='/:collectionId' component={CategoryPage} />
