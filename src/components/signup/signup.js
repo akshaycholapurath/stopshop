@@ -27,7 +27,7 @@ class Signup extends Component{
         const {displayName,email,password,confirmPassword} = this.state;
 
         if(password!==confirmPassword) {
-            alert('Passwords dont match');
+            alert(`Passwords doesn't match`);
             return;
         }
 
@@ -42,7 +42,7 @@ class Signup extends Component{
                 confirmPassword:''
             })
         }catch(error){
-            console.error(error);
+            alert(error.message);
         }
     }
 
