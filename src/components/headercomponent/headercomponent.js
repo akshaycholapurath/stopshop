@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './headercomponent.styles.scss';
 import {Link} from 'react-router-dom';
 import { auth } from '../../firebase/firebase.util';

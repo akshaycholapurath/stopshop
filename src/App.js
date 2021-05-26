@@ -1,4 +1,4 @@
-import './App.css';
+import './App.styles.scss';
 import Homepage from './pages/homepage/homepage';
 import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
 import Shoppage from './pages/shoppage/shoppage';

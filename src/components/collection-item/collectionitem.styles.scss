@@ -46,4 +46,18 @@
       opacity: 0.65;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+
+    &:hover {
+      cursor: pointer;
+      .image {
+        opacity: 0.9;
+      }
+      .custom-button {
+        opacity: 0.9;
+      }
+    }
+  }
 }
